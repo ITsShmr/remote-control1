@@ -38,13 +38,15 @@ targets:
     platform: iOS
     sources:
       - path: ScreenBroadcast
-    info:
-      path: ScreenBroadcast/Info.plist
+        type: group
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: com.remotecontrol.ios.ScreenBroadcast
         PRODUCT_NAME: ScreenBroadcast
+        INFOPLIST_FILE: ScreenBroadcast/Info.plist
         CODE_SIGN_STYLE: Manual
         CODE_SIGN_IDENTITY: ""
         CODE_SIGNING_REQUIRED: NO
         CODE_SIGNING_ALLOWED: NO
+        SKIP_INSTALL: "NO"
+        GENERATE_INFOPLIST_FILE: "NO"
