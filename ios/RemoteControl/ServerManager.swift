@@ -30,7 +30,6 @@ final class ServerManager: ObservableObject {
     func start() {
         guard listener == nil else { return }
         let params = NWParameters.tcp
-        params.includePeerToPeer = true
         guard let port = NWEndpoint.Port(rawValue: port) else { return }
         do {
             listener = try NWListener(using: params, on: port)
@@ -39,14 +38,14 @@ final class ServerManager: ObservableObject {
                 self?.accept(conn)
             }
             listener?.stateUpdateHandler = { [weak self] state in
-                if case .failed = state {
-                    self?.setFailed("Listener failed")
+                if case .failed(let err) = state {
+                    self?.setFailed("Listener failed: \(err.debugDescription)")
                 }
             }
             listener?.start(queue: queue)
             setState(.listening)
         } catch {
-            setFailed("Failed to start server")
+            setFailed("Failed to start: \(error.localizedDescription)")
         }
     }
 
