@@ -19,11 +19,13 @@ jobs:
       - name: Build IPA
         run: |
           chmod +x scripts/build-ios.sh
-          cp -r ios/RemoteControl scripts/RemoteControl
-          cd scripts
+          mkdir -p build-work
+          cp -r ios/RemoteControl/* build-work/
+          cp scripts/build-ios.sh build-work/
+          cd build-work
           bash build-ios.sh
           cd ..
-          cp scripts/RemoteControl.ipa .
+          cp build-work/RemoteControl.ipa .
 
       - name: Upload IPA
         uses: actions/upload-artifact@v4
