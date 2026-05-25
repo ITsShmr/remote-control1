@@ -11,7 +11,7 @@ struct ConnectionView: View {
             Image(systemName: "antenna.radiowaves.left.and.right")
                 .font(.system(size: 64))
                 .foregroundStyle(.blue)
-                .symbolEffect(.pulse, options: .repeat(),
+                .symbolEffect(.pulse, options: .repeat(nil),
                              isActive: isAnimating)
 
             VStack(spacing: 8) {

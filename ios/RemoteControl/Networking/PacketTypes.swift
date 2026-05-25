@@ -27,7 +27,7 @@ public enum ConnectionQuality: UInt8, Codable, Sendable {
 }
 
 public struct HandshakePayload: Codable, Sendable {
-    public let protocolVersion: UInt16 = 1
+    public var protocolVersion: UInt16 = 1
     public let deviceName: String
     public let screenWidth: UInt16
     public let screenHeight: UInt16

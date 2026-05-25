@@ -12,8 +12,7 @@ public final class TouchSimulator {
 
     public func performTap(at point: CGPoint) {
         guard isEnabled else { return }
-        let window = keyWindow() ?? UIApplication.shared.windows.first
-        guard let window = window else { return }
+        guard let window = keyWindow() else { return }
 
         guard let touch = createTouch(at: point, in: window) else { return }
         guard let event = createTouchEvent(touches: [touch],
@@ -26,8 +25,7 @@ public final class TouchSimulator {
 
     public func performDrag(from: CGPoint, to: CGPoint, duration: TimeInterval = 0.3) {
         guard isEnabled else { return }
-        let window = keyWindow() ?? UIApplication.shared.windows.first
-        guard let window = window else { return }
+        guard let window = keyWindow() else { return }
 
         guard let touch = createTouch(at: from, in: window) else { return }
         guard let event = createTouchEvent(touches: [touch],
@@ -51,8 +49,7 @@ public final class TouchSimulator {
 
     public func performTouchDown(at point: CGPoint) {
         guard isEnabled else { return }
-        let window = keyWindow() ?? UIApplication.shared.windows.first
-        guard let window = window else { return }
+        guard let window = keyWindow() else { return }
         guard let touch = createTouch(at: point, in: window) else { return }
         guard let event = createTouchEvent(touches: [touch],
                                            window: window) else { return }
@@ -63,8 +60,7 @@ public final class TouchSimulator {
 
     public func performTouchMove(to point: CGPoint) {
         guard isEnabled, let touch = activeTouch else { return }
-        let window = keyWindow() ?? UIApplication.shared.windows.first
-        guard let window = window else { return }
+        guard let window = keyWindow() else { return }
         updateTouchLocation(touch, point: point, in: window)
         sendTouchPhase(.moved, touch: touch,
                       event: activeEvent ?? createDummyEvent(),
@@ -73,7 +69,7 @@ public final class TouchSimulator {
 
     public func performTouchUp(at point: CGPoint? = nil) {
         guard isEnabled, let touch = activeTouch else { return }
-        let window = keyWindow() ?? UIApplication.shared.windows.first
+        guard let window = keyWindow() else { return }
         if let point = point {
             updateTouchLocation(touch, point: point, in: window)
         }
@@ -117,7 +113,7 @@ public final class TouchSimulator {
     }
 
     private func createDummyEvent() -> UIEvent {
-        let cls = eventClass ?? UIEvent.self
+        let cls: AnyClass = eventClass ?? UIEvent.self
         let event = cls.alloc()
         event.setValue(Set<UITouch>(), forKey: "allTouches")
         event.setValue(Date(), forKey: "timestamp")
