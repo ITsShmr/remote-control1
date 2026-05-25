@@ -5,7 +5,7 @@ PROJECT_NAME="RemoteControl"
 echo "=== Step 1: Install xcodegen 2.40.0 ==="
 curl -L https://github.com/yonaskolb/XcodeGen/releases/download/2.40.0/xcodegen.zip -o /tmp/xcodegen.zip 2>&1
 unzip -o /tmp/xcodegen.zip -d /tmp/xcodegen-bin/ 2>&1
-sudo cp /tmp/xcodegen-bin/xcodegen /usr/local/bin/xcodegen
+sudo cp /tmp/xcodegen-bin/xcodegen/bin/xcodegen /usr/local/bin/xcodegen
 chmod +x /usr/local/bin/xcodegen
 xcodegen --version 2>&1
 
