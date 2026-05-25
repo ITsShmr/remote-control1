@@ -1,5 +1,6 @@
 import Foundation
 import UIKit
+import CoreMedia
 
 public final class StreamManager: NSObject {
     public static let shared = StreamManager()

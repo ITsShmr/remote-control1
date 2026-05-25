@@ -30,7 +30,7 @@ public final class ScreenCaptureService: NSObject {
     private var scaleFactor: CGFloat = 1.0
     private var jpegCompressionQuality: CGFloat = 0.8
     private var lastFrameTime = CMTime.zero
-    private let minFrameInterval: CMTime
+    private var minFrameInterval: CMTime
 
     override init() {
         minFrameInterval = CMTime(value: 1, timescale: 30)

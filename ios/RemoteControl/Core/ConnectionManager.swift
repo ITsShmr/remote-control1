@@ -7,11 +7,20 @@ public enum ConnectionMethod: String, CaseIterable, Sendable {
     case bluetooth = "Bluetooth"
 }
 
-public enum ConnectionState: Sendable {
+public enum ConnectionState: Sendable, Hashable {
     case disconnected
     case connecting
     case connected(method: ConnectionMethod)
     case failed(Error)
+
+    public func hash(into hasher: inout Hasher) {
+        switch self {
+        case .disconnected: hasher.combine(0)
+        case .connecting: hasher.combine(1)
+        case .connected(let method): hasher.combine(2); hasher.combine(method)
+        case .failed: hasher.combine(3)
+        }
+    }
 }
 
 public protocol ConnectionManagerDelegate: AnyObject {

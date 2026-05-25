@@ -1,5 +1,6 @@
 import Foundation
 import Network
+import UIKit
 
 public protocol TransportDelegate: AnyObject {
     func transportDidConnect()
@@ -133,12 +134,18 @@ public final class TCPTransport: Transport {
     }
 
     private func txtRecord() -> Data {
-        let dict: [String: String] = [
-            "version": "1",
-            "device": UIDevice.current.name,
-            "model": UIDevice.current.model
+        var data = Data()
+        let pairs = [
+            "version=1",
+            "device=\(UIDevice.current.name)",
+            "model=\(UIDevice.current.model)"
         ]
-        return NWTXTRecord(dictionary: dict).encodedData
+        for pair in pairs {
+            let bytes = [UInt8](pair.utf8)
+            data.append(UInt8(bytes.count))
+            data.append(contentsOf: bytes)
+        }
+        return data
     }
 }
 

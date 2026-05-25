@@ -19,7 +19,7 @@ public enum PacketType: UInt32, Sendable {
     case disconnect        = 0xFFFF
 }
 
-public enum ConnectionQuality: UInt8, Sendable {
+public enum ConnectionQuality: UInt8, Codable, Sendable {
     case low    = 0
     case medium = 1
     case high   = 2
