@@ -1,13 +1,11 @@
 #!/bin/bash
-set -e
-
 PROJECT_NAME="RemoteControl"
 BUNDLE_ID="com.remotecontrol.ios"
 
-echo "=== Creating Xcode project structure ==="
+echo "=== Step 1: Creating Xcode project structure ==="
 mkdir -p "$PROJECT_NAME.xcodeproj"
 
-cat > "$PROJECT_NAME.xcodeproj/project.pbxproj" << 'XCODE'
+cat > "$PROJECT_NAME.xcodeproj/project.pbxproj" << 'ENDXCODE'
 // !$*UTF8*$!
 {
   archiveVersion = 1;
@@ -32,7 +30,6 @@ cat > "$PROJECT_NAME.xcodeproj/project.pbxproj" << 'XCODE'
 111111111111111111111125 /* Data+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222222222222222222222236; };
 111111111111111111111126 /* UIImage+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222222222222222222222237; };
 /* End PBXBuildFile section */
-
 /* Begin PBXFileReference section */
 222222222222222222222222 /* RemoteControlApp.swift */ = {isa = PBXFileReference; path = App/RemoteControlApp.swift; sourceTree = "<group>"; };
 222222222222222222222223 /* ContentView.swift */ = {isa = PBXFileReference; path = UI/ContentView.swift; sourceTree = "<group>"; };
@@ -53,7 +50,6 @@ cat > "$PROJECT_NAME.xcodeproj/project.pbxproj" << 'XCODE'
 333333333333333333333333 /* Info.plist */ = {isa = PBXFileReference; path = Support/Info.plist; sourceTree = "<group>"; };
 333333333333333333333334 /* RemoteControl.entitlements */ = {isa = PBXFileReference; path = Support/RemoteControl.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
-
 /* Begin PBXGroup section */
 444444444444444444444441 = {
   isa = PBXGroup;
@@ -67,7 +63,6 @@ cat > "$PROJECT_NAME.xcodeproj/project.pbxproj" << 'XCODE'
   sourceTree = "<group>";
 };
 /* End PBXGroup section */
-
 /* Begin PBXNativeTarget section */
 555555555555555555555551 /* RemoteControl */ = {
   isa = PBXNativeTarget;
@@ -80,7 +75,6 @@ cat > "$PROJECT_NAME.xcodeproj/project.pbxproj" << 'XCODE'
   productType = "com.apple.product-type.application";
 };
 /* End PBXNativeTarget section */
-
 /* Begin PBXProject section */
 999999999999999999999991 /* Project object */ = {
   isa = PBXProject;
@@ -96,41 +90,46 @@ cat > "$PROJECT_NAME.xcodeproj/project.pbxproj" << 'XCODE'
   targets = (555555555555555555555551);
 };
 /* End PBXProject section */
-
 /* Begin XCBuildConfiguration section */
 666666666666666666666671 /* Debug */ = {
   isa = XCBuildConfiguration;
   buildSettings = {
+    ASSETCATALOG_COMPILER_APPICON_NAME = "";
     CODE_SIGN_STYLE = Manual;
+    CURRENT_PROJECT_VERSION = 1;
     DEVELOPMENT_TEAM = "";
-    PROVISIONING_PROFILE_SPECIFIER = "";
+    GENERATE_INFOPLIST_FILE = YES;
     IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+    MARKETING_VERSION = 1.0;
+    PRODUCT_BUNDLE_IDENTIFIER = "com.remotecontrol.ios";
+    PRODUCT_NAME = "RemoteControl";
     SWIFT_VERSION = 5.0;
     TARGETED_DEVICE_FAMILY = "1,2";
     INFOPLIST_FILE = Support/Info.plist;
-    PRODUCT_BUNDLE_IDENTIFIER = BUNDLE_ID_PLACEHOLDER;
-    PRODUCT_NAME = PROJECT_NAME_PLACEHOLDER;
-    CODE_SIGN_IDENTITY = "Apple Development";
-    CODE_SIGNING_REQUIRED = YES;
-    CODE_SIGNING_ALLOWED = YES;
+    CODE_SIGN_IDENTITY = "";
+    CODE_SIGNING_REQUIRED = NO;
+    CODE_SIGNING_ALLOWED = NO;
   };
   name = Debug;
 };
 666666666666666666666672 /* Release */ = {
   isa = XCBuildConfiguration;
   buildSettings = {
+    ASSETCATALOG_COMPILER_APPICON_NAME = "";
     CODE_SIGN_STYLE = Manual;
+    CURRENT_PROJECT_VERSION = 1;
     DEVELOPMENT_TEAM = "";
-    PROVISIONING_PROFILE_SPECIFIER = "";
+    GENERATE_INFOPLIST_FILE = YES;
     IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+    MARKETING_VERSION = 1.0;
+    PRODUCT_BUNDLE_IDENTIFIER = "com.remotecontrol.ios";
+    PRODUCT_NAME = "RemoteControl";
     SWIFT_VERSION = 5.0;
     TARGETED_DEVICE_FAMILY = "1,2";
     INFOPLIST_FILE = Support/Info.plist;
-    PRODUCT_BUNDLE_IDENTIFIER = BUNDLE_ID_PLACEHOLDER;
-    PRODUCT_NAME = PROJECT_NAME_PLACEHOLDER;
-    CODE_SIGN_IDENTITY = "Apple Development";
-    CODE_SIGNING_REQUIRED = YES;
-    CODE_SIGNING_ALLOWED = YES;
+    CODE_SIGN_IDENTITY = "";
+    CODE_SIGNING_REQUIRED = NO;
+    CODE_SIGNING_ALLOWED = NO;
   };
   name = Release;
 };
@@ -139,7 +138,11 @@ cat > "$PROJECT_NAME.xcodeproj/project.pbxproj" << 'XCODE'
   buildSettings = {
     ALWAYS_SEARCH_USER_PATHS = NO;
     CLANG_ENABLE_MODULES = YES;
+    CLANG_ENABLE_OBJC_ARC = YES;
+    COPY_PHASE_STRIP = NO;
+    DEBUG_INFORMATION_FORMAT = dwarf;
     IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+    ONLY_ACTIVE_ARCH = YES;
     SDKROOT = iphoneos;
     SWIFT_VERSION = 5.0;
   };
@@ -150,14 +153,17 @@ cat > "$PROJECT_NAME.xcodeproj/project.pbxproj" << 'XCODE'
   buildSettings = {
     ALWAYS_SEARCH_USER_PATHS = NO;
     CLANG_ENABLE_MODULES = YES;
+    CLANG_ENABLE_OBJC_ARC = YES;
+    COPY_PHASE_STRIP = NO;
+    DEBUG_INFORMATION_FORMAT = dwarf;
     IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+    ONLY_ACTIVE_ARCH = NO;
     SDKROOT = iphoneos;
     SWIFT_VERSION = 5.0;
   };
   name = Release;
 };
 /* End XCBuildConfiguration section */
-
 /* Begin XCConfigurationList section */
 666666666666666666666661 /* Build configuration list for target */ = {
   isa = XCConfigurationList;
@@ -172,29 +178,11 @@ cat > "$PROJECT_NAME.xcodeproj/project.pbxproj" << 'XCODE'
   defaultConfigurationName = Release;
 };
 /* End XCConfigurationList section */
-
 /* Begin PBXSourcesBuildPhase section */
 777777777777777777777771 /* Sources */ = {
   isa = PBXSourcesBuildPhase;
   buildActionMask = 2147483647;
-  files = (
-    111111111111111111111111,
-    111111111111111111111112,
-    111111111111111111111113,
-    111111111111111111111114,
-    111111111111111111111115,
-    111111111111111111111116,
-    111111111111111111111117,
-    111111111111111111111118,
-    111111111111111111111119,
-    111111111111111111111120,
-    111111111111111111111121,
-    111111111111111111111122,
-    111111111111111111111123,
-    111111111111111111111124,
-    111111111111111111111125,
-    111111111111111111111126,
-  );
+  files = (111111111111111111111111, 111111111111111111111112, 111111111111111111111113, 111111111111111111111114, 111111111111111111111115, 111111111111111111111116, 111111111111111111111117, 111111111111111111111118, 111111111111111111111119, 111111111111111111111120, 111111111111111111111121, 111111111111111111111122, 111111111111111111111123, 111111111111111111111124, 111111111111111111111125, 111111111111111111111126);
   runOnlyForDeploymentPostprocessing = 0;
 };
 777777777777777777777772 /* Resources */ = {
@@ -204,7 +192,6 @@ cat > "$PROJECT_NAME.xcodeproj/project.pbxproj" << 'XCODE'
   runOnlyForDeploymentPostprocessing = 0;
 };
 /* End PBXSourcesBuildPhase section */
-
 /* Begin PBXProductsBuildPhase section */
 888888888888888888888881 /* RemoteControl.app */ = {
   isa = PBXFileReference;
@@ -217,25 +204,55 @@ cat > "$PROJECT_NAME.xcodeproj/project.pbxproj" << 'XCODE'
   };
   rootObject = 999999999999999999999991;
 }
-XCODE
+ENDXCODE
 
-# Replace placeholders
-sed -i '' "s/BUNDLE_ID_PLACEHOLDER/$BUNDLE_ID/g" "$PROJECT_NAME.xcodeproj/project.pbxproj"
-sed -i '' "s/PROJECT_NAME_PLACEHOLDER/$PROJECT_NAME/g" "$PROJECT_NAME.xcodeproj/project.pbxproj"
+echo "=== Step 2: Creating Xcode scheme ==="
+mkdir -p "$PROJECT_NAME.xcodeproj/xcshareddata/xcschemes"
+cat > "$PROJECT_NAME.xcodeproj/xcshareddata/xcschemes/$PROJECT_NAME.xcscheme" << 'ENDSCHEME'
+<?xml version="1.0" encoding="UTF-8"?>
+<Scheme LastUpgradeVersion = "1500" version = "1.7">
+  <BuildAction parallelizeBuildables = "YES" buildImplicitDependencies = "YES">
+    <BuildActionEntries>
+      <BuildActionEntry buildForTesting = "YES" buildForRunning = "YES" buildForProfiling = "YES" buildForArchiving = "YES" buildForAnalyzing = "YES">
+        <BuildableReference BuildableIdentifier = "primary" BlueprintIdentifier = "555555555555555555555551" BuildableName = "RemoteControl.app" BlueprintName = "RemoteControl" ReferencedContainer = "container:RemoteControl.xcodeproj"/>
+      </BuildActionEntry>
+    </BuildActionEntries>
+  </BuildAction>
+  <TestAction buildConfiguration = "Debug" selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB" selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB" shouldUseLaunchSchemeArgsEnv = "YES"/>
+  <LaunchAction buildConfiguration = "Debug" selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB" selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB" launchStyle = "0" useCustomWorkingDirectory = "NO" ignoresPersistentStateOnLaunch = "NO" debugDocumentVersioning = "YES" debugServiceExtension = "internal" allowLocationSimulation = "YES">
+    <BuildableProductRunnable runnableDebuggingMode = "0">
+      <BuildableReference BuildableIdentifier = "primary" BlueprintIdentifier = "555555555555555555555551" BuildableName = "RemoteControl.app" BlueprintName = "RemoteControl" ReferencedContainer = "container:RemoteControl.xcodeproj"/>
+    </BuildableProductRunnable>
+  </LaunchAction>
+  <ProfileAction buildConfiguration = "Release" shouldUseLaunchSchemeArgsEnv = "YES" savedToolIdentifier = "" useCustomWorkingDirectory = "NO" debugDocumentVersioning = "YES">
+    <BuildableProductRunnable runnableDebuggingMode = "0">
+      <BuildableReference BuildableIdentifier = "primary" BlueprintIdentifier = "555555555555555555555551" BuildableName = "RemoteControl.app" BlueprintName = "RemoteControl" ReferencedContainer = "container:RemoteControl.xcodeproj"/>
+    </BuildableProductRunnable>
+  </ProfileAction>
+  <AnalyzeAction buildConfiguration = "Debug"/>
+  <ArchiveAction buildConfiguration = "Release" revealArchiveInOrganizer = "YES"/>
+</Scheme>
+ENDSCHEME
 
-echo "=== Building iOS app ==="
+echo "=== Step 3: Running xcodebuild ==="
 xcodebuild clean build \
   -project "$PROJECT_NAME.xcodeproj" \
   -scheme "$PROJECT_NAME" \
   -sdk iphoneos \
   -configuration Release \
+  -derivedDataPath build \
   CODE_SIGN_IDENTITY="" \
   CODE_SIGNING_REQUIRED=NO \
   CODE_SIGNING_ALLOWED=NO \
-  -derivedDataPath build \
-  ONLY_ACTIVE_ARCH=NO
+  ONLY_ACTIVE_ARCH=NO 2>&1
 
-echo "=== Packaging IPA ==="
+BUILD_EXIT=$?
+if [ $BUILD_EXIT -ne 0 ]; then
+  echo "=== xcodebuild failed with exit code: $BUILD_EXIT ==="
+  exit $BUILD_EXIT
+fi
+
+echo "=== Step 4: Packaging IPA ==="
 APP_PATH="build/Build/Products/Release-iphoneos/$PROJECT_NAME.app"
 if [ -d "$APP_PATH" ]; then
   mkdir -p output/Payload
@@ -243,9 +260,10 @@ if [ -d "$APP_PATH" ]; then
   cd output
   zip -r "$PROJECT_NAME.ipa" Payload/
   mv "$PROJECT_NAME.ipa" ../
-  echo "IPA created successfully"
+  echo "=== IPA created successfully! ==="
 else
-  echo "ERROR: App not found at $APP_PATH"
-  find build -name "*.app" -type d
+  echo "=== ERROR: App not found at $APP_PATH ==="
+  echo "Looking for .app anywhere..."
+  find build -name "*.app" -type d 2>/dev/null || echo "No .app found"
   exit 1
 fi

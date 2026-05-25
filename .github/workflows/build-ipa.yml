@@ -24,8 +24,6 @@ jobs:
           cp scripts/build-ios.sh build-work/
           cd build-work
           bash build-ios.sh
-          cd ..
-          cp build-work/RemoteControl.ipa .
 
       - name: Upload IPA
         uses: actions/upload-artifact@v4
