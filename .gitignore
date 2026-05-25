@@ -1,0 +1,26 @@
+# Xcode
+ios/RemoteControl.xcodeproj/
+ios/RemoteControl/*.xcworkspace
+ios/Pods/
+ios/build/
+*.xcuserdata
+
+# Node / Electron
+desktop/node_modules/
+desktop/dist/
+desktop/release/
+
+# OS
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+
+# IDE
+.idea/
+.vscode/
+*.sublime-*
+
+# Env
+.env
+.env.local

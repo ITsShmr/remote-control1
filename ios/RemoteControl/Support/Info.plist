@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>CFBundleDevelopmentRegion</key>
+    <string>en</string>
+    <key>CFBundleDisplayName</key>
+    <string>Remote Control</string>
+    <key>CFBundleExecutable</key>
+    <string>$(EXECUTABLE_NAME)</string>
+    <key>CFBundleIdentifier</key>
+    <string>com.remotecontrol.ios</string>
+    <key>CFBundleInfoDictionaryVersion</key>
+    <string>6.0</string>
+    <key>CFBundleName</key>
+    <string>RemoteControl</string>
+    <key>CFBundlePackageType</key>
+    <string>APPL</string>
+    <key>CFBundleShortVersionString</key>
+    <string>1.0</string>
+    <key>CFBundleVersion</key>
+    <string>1</string>
+    <key>LSRequiresIPhoneOS</key>
+    <true/>
+    <key>NSBonjourServices</key>
+    <array>
+        <string>_remoteios._tcp</string>
+    </array>
+    <key>NSLocalNetworkUsageDescription</key>
+    <string>Remote Control needs local network access to discover and connect to the desktop app.</string>
+    <key>NSBluetoothAlwaysUsageDescription</key>
+    <string>Remote Control uses Bluetooth to connect wirelessly to your computer.</string>
+    <key>NSBluetoothPeripheralUsageDescription</key>
+    <string>Remote Control uses Bluetooth to connect wirelessly to your computer.</string>
+    <key>NSCameraUsageDescription</key>
+    <string>Remote Control needs screen recording permission to stream your screen.</string>
+    <key>UIBackgroundModes</key>
+    <array>
+        <string>bonjour-service</string>
+        <string>bluetooth-peripheral</string>
+    </array>
+    <key>UILaunchScreen</key>
+    <dict>
+        <key>UIColorName</key>
+        <string>black</string>
+    </dict>
+    <key>UIRequiredDeviceCapabilities</key>
+    <array>
+        <string>arm64</string>
+    </array>
+    <key>UISupportedInterfaceOrientations</key>
+    <array>
+        <string>UIInterfaceOrientationPortrait</string>
+        <string>UIInterfaceOrientationLandscapeLeft</string>
+        <string>UIInterfaceOrientationLandscapeRight</string>
+    </array>
+    <key>RTCScreenCaptureEnabled</key>
+    <true/>
+</dict>
+</plist>
