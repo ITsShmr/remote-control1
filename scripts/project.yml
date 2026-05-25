@@ -28,3 +28,20 @@ targets:
         CODE_SIGN_IDENTITY: ""
         CODE_SIGNING_REQUIRED: NO
         CODE_SIGNING_ALLOWED: NO
+    dependencies:
+      - target: ScreenBroadcast
+  ScreenBroadcast:
+    type: app-extension
+    platform: iOS
+    sources:
+      - path: ScreenBroadcast
+    info:
+      path: ScreenBroadcast/Info.plist
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.remotecontrol.ios.ScreenBroadcast
+        PRODUCT_NAME: ScreenBroadcast
+        CODE_SIGN_STYLE: Manual
+        CODE_SIGN_IDENTITY: ""
+        CODE_SIGNING_REQUIRED: NO
+        CODE_SIGNING_ALLOWED: NO
