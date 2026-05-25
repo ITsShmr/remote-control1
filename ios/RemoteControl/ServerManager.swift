@@ -93,6 +93,7 @@ final class ServerManager: ObservableObject {
             switch state {
             case .ready:
                 self?.setState(.connected)
+                self?.sendDeviceInfo()
                 self?.capture.start()
             case .failed, .cancelled:
                 self?.setState(.idle)
@@ -103,6 +104,17 @@ final class ServerManager: ObservableObject {
         }
         conn.start(queue: queue)
         receive()
+    }
+
+    private func sendDeviceInfo() {
+        let screen = UIScreen.main
+        let msg = DeviceInfoMessage(
+            deviceName: UIDevice.current.name,
+            screenWidth: screen.bounds.width * screen.scale,
+            screenHeight: screen.bounds.height * screen.scale
+        )
+        guard let payload = try? JSONEncoder().encode(msg) else { return }
+        send(Packet(type: .deviceInfo, payload: payload))
     }
 
     private func receive() {

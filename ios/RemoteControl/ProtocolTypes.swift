@@ -7,6 +7,7 @@ enum PacketType: UInt32, Codable, Sendable {
     case heartbeat     = 0x0002
     case heartbeatAck  = 0x0003
     case frameData     = 0x0101
+    case deviceInfo    = 0x0302
     case mouseMove     = 0x0201
     case mouseDown     = 0x0202
     case mouseUp       = 0x0203
@@ -24,6 +25,12 @@ enum ConnectionQuality: UInt8, Codable, Sendable {
 struct HandshakeMessage: Codable, Sendable {
     var deviceName: String
     var version: String
+}
+
+struct DeviceInfoMessage: Codable, Sendable {
+    var deviceName: String
+    var screenWidth: Double
+    var screenHeight: Double
 }
 
 struct MouseMoveMessage: Codable, Sendable {
