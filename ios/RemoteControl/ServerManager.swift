@@ -1,6 +1,7 @@
 import Foundation
 import Network
 import UIKit
+import Darwin
 
 enum AppState: String, Sendable {
     case idle
@@ -14,12 +15,12 @@ final class ServerManager: ObservableObject {
 
     @Published var state: AppState = .idle
     @Published var errorMessage: String = ""
+    @Published var localIP: String = ""
 
     private var listener: NWListener?
     private var connection: NWConnection?
     private var readBuffer = Data()
     private let queue = DispatchQueue(label: "com.remotecontrol.server", qos: .userInitiated)
-    private let serviceType = "_remoteios._tcp"
     private let port: UInt16 = 5288
     private let capture = CaptureService()
 
@@ -33,7 +34,6 @@ final class ServerManager: ObservableObject {
         guard let port = NWEndpoint.Port(rawValue: port) else { return }
         do {
             listener = try NWListener(using: params, on: port)
-            listener?.service = NWListener.Service(type: serviceType, txtRecord: txtData())
             listener?.newConnectionHandler = { [weak self] conn in
                 self?.accept(conn)
             }
@@ -43,10 +43,36 @@ final class ServerManager: ObservableObject {
                 }
             }
             listener?.start(queue: queue)
+            localIP = Self.getWiFiAddress()
             setState(.listening)
         } catch {
             setFailed("Failed to start: \(error.localizedDescription)")
         }
+    }
+
+    private static func getWiFiAddress() -> String {
+        var addr: String?
+        var ifaddr: UnsafeMutablePointer<ifaddrs>?
+        guard getifaddrs(&ifaddr) == 0, let ifaddr else { return "Unknown" }
+        var ptr: UnsafeMutablePointer<ifaddrs>? = ifaddr
+        while let p = ptr {
+            let family = p.pointee.ifa_addr.pointee.sa_family
+            if family == UInt8(AF_INET) {
+                let name = String(cString: p.pointee.ifa_name)
+                if name.hasPrefix("en") {
+                    var hostname = [CChar](repeating: 0, count: Int(NI_MAXHOST))
+                    getnameinfo(p.pointee.ifa_addr, socklen_t(p.pointee.ifa_addr.pointee.sa_len),
+                                &hostname, socklen_t(hostname.count), nil, 0, NI_NUMERICHOST)
+                    let ip = String(cString: hostname)
+                    if !ip.hasPrefix("169.254.") {
+                        addr = ip
+                    }
+                }
+            }
+            ptr = p.pointee.ifa_next
+        }
+        freeifaddrs(ifaddr)
+        return addr ?? "Unknown"
     }
 
     func stop() {
@@ -153,15 +179,6 @@ final class ServerManager: ObservableObject {
         }
     }
 
-    private func txtData() -> Data {
-        var data = Data()
-        for pair in ["version=1", "device=\(UIDevice.current.name)", "model=\(UIDevice.current.model)"] {
-            let bytes = [UInt8](pair.utf8)
-            data.append(UInt8(bytes.count))
-            data.append(contentsOf: bytes)
-        }
-        return data
-    }
 }
 
 extension ServerManager: CaptureServiceDelegate {

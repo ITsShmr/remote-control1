@@ -14,6 +14,11 @@ struct ContentView: View {
                 .animation(.easeInOut(duration: 1.0).repeatForever(autoreverses: true), value: isPulsing)
             Text(statusText)
                 .font(.title2.bold())
+            if server.state == .listening {
+                Text(server.localIP)
+                    .font(.title3.monospaced())
+                    .foregroundStyle(.green)
+            }
             if server.state == .failed, !server.errorMessage.isEmpty {
                 Text(server.errorMessage)
                     .font(.subheadline)
