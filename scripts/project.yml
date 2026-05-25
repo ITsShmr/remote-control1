@@ -16,6 +16,9 @@ targets:
     platform: iOS
     sources:
       - path: .
+        excludes:
+          - "ScreenBroadcast/**"
+          - "build*"
     info:
       path: Support/Info.plist
     entitlements:
