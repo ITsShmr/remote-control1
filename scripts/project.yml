@@ -17,7 +17,6 @@ targets:
     sources:
       - path: .
         excludes:
-          - "ScreenBroadcast/**"
           - "build*"
     info:
       path: Support/Info.plist
@@ -31,22 +30,4 @@ targets:
         CODE_SIGN_IDENTITY: ""
         CODE_SIGNING_REQUIRED: NO
         CODE_SIGNING_ALLOWED: NO
-    dependencies:
-      - target: ScreenBroadcast
-  ScreenBroadcast:
-    type: app-extension
-    platform: iOS
-    sources:
-      - path: ScreenBroadcast
-        type: group
-    settings:
-      base:
-        PRODUCT_BUNDLE_IDENTIFIER: com.remotecontrol.ios.ScreenBroadcast
-        PRODUCT_NAME: ScreenBroadcast
-        INFOPLIST_FILE: ScreenBroadcast/Info.plist
-        CODE_SIGN_STYLE: Manual
-        CODE_SIGN_IDENTITY: ""
-        CODE_SIGNING_REQUIRED: NO
-        CODE_SIGNING_ALLOWED: NO
-        SKIP_INSTALL: "NO"
-        GENERATE_INFOPLIST_FILE: "NO"
+

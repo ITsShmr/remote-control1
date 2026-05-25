@@ -18,13 +18,10 @@ final class ServerManager: ObservableObject {
     @Published var localIP: String = ""
 
     private var listener: NWListener?
-    private var localListener: NWListener?
     private var connection: NWConnection?
-    private var extConnection: NWConnection?
     private var readBuffer = Data()
     private let queue = DispatchQueue(label: "com.remotecontrol.server", qos: .userInitiated)
     private let port: UInt16 = 5288
-    private let extPort: UInt16 = 5289
     private let capture = CaptureService()
 
     private init() {
@@ -46,38 +43,10 @@ final class ServerManager: ObservableObject {
                 }
             }
             listener?.start(queue: queue)
-            startLocalListener()
             localIP = Self.getWiFiAddress()
             setState(.listening)
         } catch {
             setFailed("Failed to start: \(error.localizedDescription)")
-        }
-    }
-
-    private func startLocalListener() {
-        guard let port = NWEndpoint.Port(rawValue: extPort) else { return }
-        localListener = try? NWListener(using: .tcp, on: port)
-        localListener?.newConnectionHandler = { [weak self] conn in
-            self?.extConnection?.cancel()
-            self?.extConnection = conn
-            conn.start(queue: self?.queue ?? .main)
-            self?.receiveExt()
-        }
-        localListener?.start(queue: queue)
-    }
-
-    private func receiveExt() {
-        extConnection?.receive(minimumIncompleteLength: 1, maximumLength: 131072) { [weak self] data, _, isComplete, error in
-            guard let self = self else { return }
-            if let data = data, !data.isEmpty {
-                self.connection?.send(content: data, completion: .contentProcessed { _ in })
-            }
-            if isComplete || error != nil {
-                self.extConnection?.cancel()
-                self.extConnection = nil
-            } else {
-                self.receiveExt()
-            }
         }
     }
 
@@ -107,10 +76,6 @@ final class ServerManager: ObservableObject {
     }
 
     func stop() {
-        extConnection?.cancel()
-        extConnection = nil
-        localListener?.cancel()
-        localListener = nil
         connection?.cancel()
         connection = nil
         listener?.cancel()
