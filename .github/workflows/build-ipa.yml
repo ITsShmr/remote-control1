@@ -22,6 +22,7 @@ jobs:
           mkdir -p build-work
           cp -r ios/RemoteControl/* build-work/
           cp scripts/build-ios.sh build-work/
+          cp scripts/project.yml build-work/
           cd build-work
           bash build-ios.sh
 
