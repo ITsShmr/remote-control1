@@ -13,6 +13,20 @@ public enum ConnectionState: Sendable, Hashable {
     case connected(method: ConnectionMethod)
     case failed(Error)
 
+    public static func == (lhs: ConnectionState, rhs: ConnectionState) -> Bool {
+        switch (lhs, rhs) {
+        case (.disconnected, .disconnected),
+             (.connecting, .connecting):
+            return true
+        case (.connected(let lm), .connected(let rm)):
+            return lm == rm
+        case (.failed, .failed):
+            return true
+        default:
+            return false
+        }
+    }
+
     public func hash(into hasher: inout Hasher) {
         switch self {
         case .disconnected: hasher.combine(0)

@@ -1,5 +1,6 @@
 import Foundation
 import MultipeerConnectivity
+import UIKit
 
 public final class BluetoothTransport: NSObject, Transport {
     public weak var delegate: TransportDelegate?
