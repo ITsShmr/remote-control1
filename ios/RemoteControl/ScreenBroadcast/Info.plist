@@ -26,10 +26,13 @@
         <string>com.apple.replaykit.broadcast</string>
         <key>NSExtensionPrincipalClass</key>
         <string>SampleHandler</string>
+        <key>NSExtensionAttributes</key>
+        <dict>
+            <key>RPBroadcastServiceName</key>
+            <string>Remote Control</string>
+            <key>RPBroadcastServiceExtensionIdentifier</key>
+            <string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+        </dict>
     </dict>
-    <key>RPBroadcastServiceName</key>
-    <string>Remote Control</string>
-    <key>RPBroadcastServiceExtensionIdentifier</key>
-    <string>com.remotecontrol.ios.ScreenBroadcast</string>
 </dict>
 </plist>
