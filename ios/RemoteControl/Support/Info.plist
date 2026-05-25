@@ -32,5 +32,11 @@
         <string>UIInterfaceOrientationLandscapeLeft</string>
         <string>UIInterfaceOrientationLandscapeRight</string>
     </array>
+    <key>NSLocalNetworkUsageDescription</key>
+    <string>Remote Control needs local network access to discover and connect to the desktop app.</string>
+    <key>NSBonjourServices</key>
+    <array>
+        <string>_remoteios._tcp</string>
+    </array>
 </dict>
 </plist>
